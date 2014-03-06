@@ -75,6 +75,8 @@ app.post('/transcription/twilio', webhook, function(request, response) {
     Message.findOne({
         callSid:request.param('CallSid')
     }, function(err, message) {
+        console.log(message);
+        console.log(request.param('CallSid'));
         // update the relevant message
         if (message) {
             message.transcription = request.param('TranscriptionText');
