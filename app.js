@@ -16,7 +16,7 @@ var app = require('gopher');
 var webhook = twilio.webhook({
     // Only validate requests in production
     validate: process.env.NODE_ENV === 'production',
-    
+
     // Manually configure the host and protocol used for webhook config
     host:'rev-answering-machine.herokuapp.com',
     protocol:'https'
@@ -25,6 +25,8 @@ var webhook = twilio.webhook({
 // Handle incoming voice call
 app.post('/voice', webhook, function(request, response) {
     var twiml = new twilio.TwimlResponse();
+
+    // Use TTS to give instructions, then start a recording
     twiml.say('Please leave a message after the beep. Press star to end the recording.', {
         voice:'alice'
     }).record({
