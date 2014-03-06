@@ -1,0 +1,25 @@
+{
+  "name": "machine",
+  "version": "0.0.1",
+  "description": "A simple node.js answering machine with high-quality transcription using rev.com",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "twilio",
+    "answering",
+    "machine",
+    "rev.com"
+  ],
+  "author": "Kevin Whinnery",
+  "license": "MIT",
+  "dependencies": {
+    "request": "~2.34.0",
+    "twilio": "~1.6.0",
+    "ejs": "~0.8.5",
+    "express": "~3.4.8",
+    "gopher": "0.0.5",
+    "mongoose": "~3.8.8"
+  }
+}
