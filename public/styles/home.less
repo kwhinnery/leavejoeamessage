@@ -2,6 +2,13 @@
 @import "common.less";
 
 @mainContentWidth: 700px;
+@shadow: 3px 3px 0px 0px rgba(20,20,20,0.5);
+
+.box-shadow {
+    -webkit-box-shadow: @shadow;
+    -moz-box-shadow: @shadow;
+    box-shadow: @shadow;
+}
 
 body {
     background: url(/img/tgt-mobile.jpg) no-repeat;
@@ -44,6 +51,7 @@ img.portrait {
     margin:10px auto;
     border-radius:100px;
     border:2px solid @white;
+    .box-shadow;
 }
 
 #messages {
@@ -169,6 +177,11 @@ img.portrait {
 
     #messages {
         height:310px;
+        .box-shadow;
+    }
+
+    #acknowledgements {
+        .box-shadow;
     }
 
     h1 {

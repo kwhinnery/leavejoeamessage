@@ -9,7 +9,7 @@
         <h1>Call Or Text <span>(612) 255-4563</span> To Wish Joe Good Luck This Season!</h1>
 
         <!-- Angular controller to drive display of the current message list -->
-        <div id="messages" ng-controller="app.controllers.MessageList" ng-cloak>
+        <div id="messages" ng-controller="app.controllers.MessageList">
             <h2>Joe's Messages</h2>
             <div id="filter">
                 <span class="all active" 
@@ -20,7 +20,8 @@
                     ng-class="{ active: filter === 'favorites' }">Favorites</span>
             </div>
             <div id="messageList"
-                ng-show="!fetching">
+                ng-show="!fetching"
+                ng-cloak>
                 
                 <!-- Each row has it's own instance of an Angular controller -->
                 <div class="row" 

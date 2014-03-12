@@ -21,14 +21,14 @@ var MessageController = function($scope) {
             sound.play();
 
             // Update the link when the message starts playing
-            sound.bindOnce('playing', function() {
+            sound.bind('playing', function(e) {
                 $scope.$apply(function() {
                     $scope.linkText = 'Pause Message';
                 });
             });
 
             // Reset automatically when the message ends
-            sound.bindOnce('ended', function() {
+            sound.bind('ended', function(e) {
                 $scope.$apply(function() {
                     $scope.linkText = 'Play Message';
                 });
