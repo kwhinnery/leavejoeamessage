@@ -8,6 +8,3 @@ mongoose.connect(process.env.MONGOHQ_URL);
 // for Express
 var app = require('gopher');
 require('./controllers')(app);
-
-// create custom filter for EJS
-require('./shared/filter');
