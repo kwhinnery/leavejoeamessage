@@ -1,4 +1,4 @@
-module.exports = function($scope, $http) {
+var MessageListController = function($scope, $http) {
     $scope.filter = 'recent';
     $scope.fetching = true;
     $scope.messages = [];
@@ -35,3 +35,9 @@ module.exports = function($scope, $http) {
     // Fetch the initial set of messages
     fetchMessages();
 };
+
+// Make sure dependency injection doesn't break in minification
+MessageListController.$inject = ['$scope', '$http'];
+
+// Export public module interface
+module.exports = MessageListController;

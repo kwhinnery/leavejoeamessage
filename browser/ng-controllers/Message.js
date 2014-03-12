@@ -1,9 +1,11 @@
 var buzz = require('node-buzz');
 
-module.exports = function($scope) {
+var MessageController = function($scope) {
+    // This functionality is only necessary for messages that have recordings
+    if ($scope.message.type !== 'call') return;
+
     $scope.linkText = 'Play Message';
 
-    // Create a sound from the given recording URL
     var sound = new buzz.sound([
         $scope.message.recordingUrl+'.wav',
         $scope.message.recordingUrl+'.mp3'
@@ -34,3 +36,9 @@ module.exports = function($scope) {
         }
     };
 };
+
+// Make sure the preserve the meaning of the scope variable through minification
+MessageController.$inject = ['$scope'];
+
+// Export the public module interface, the controller constructor
+module.exports = MessageController;
