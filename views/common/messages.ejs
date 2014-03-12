@@ -4,7 +4,7 @@
         <span class="unapproved active" 
             ng-click="selectFilter('unapproved')"
             ng-class="{ active: filter === 'unapproved' }"
-            ng-show="admin">Unapproved</span>
+            ng-show="admin" ng-cloak>Unapproved</span>
         <span class="all" 
             ng-click="selectFilter('recent')"
             ng-class="{ active: filter === 'recent' }">Recent</span>
