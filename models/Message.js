@@ -31,5 +31,23 @@ messageSchema.statics.listPublicMessages = function(favs, callback) {
         .exec(callback);
 };
 
+// List all messages
+messageSchema.statics.listMessages = function(options, callback) {
+    var queryOpts = {};
+
+    if (options.favorites) {
+        queryOpts.favorite = true;
+    }
+
+    if (options.unapproved) {
+        queryOpts.approved = false;
+    }
+
+    var query = this.find(queryOpts)
+        .limit(200)
+        .sort('-date')
+        .exec(callback);
+};
+
 // Public module interface is a Message model object
 module.exports = mongoose.model('Message', messageSchema);

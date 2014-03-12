@@ -1,11 +1,14 @@
 var MessageListController = function($scope, $http) {
-    $scope.filter = 'recent';
+    $scope.filter = $scope.admin ? 'unapproved' : 'recent';
     $scope.fetching = true;
     $scope.messages = [];
 
-    function fetchMessages(favorites) {
+    function fetchMessages() {
         // Will flip on ajax spinner
         $scope.fetching = true;
+
+        // Determine URL we hit - if admin, use the admin search
+        var url = $scope.admin ? '/admin/messages' : '/messages';
 
         // Create request args
         var params = {};
@@ -13,8 +16,12 @@ var MessageListController = function($scope, $http) {
             params.favorites = true;
         }
 
+        if ($scope.filter === 'unapproved') {
+            params.unapproved = true;
+        }
+
         // Request a message list
-        var p = $http.get('/messages', {
+        var p = $http.get(url, {
             params: params
         }).success(function(data, status) {
             $scope.messages = data;

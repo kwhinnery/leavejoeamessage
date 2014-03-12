@@ -1,6 +1,17 @@
 var twilio = require('twilio'),
     Message = require('../models/Message');
 
+// Webhook middleware, check request signature
+exports.webhook = twilio.webhook({
+    // Only validate requests in production
+    validate: process.env.NODE_ENV === 'production',
+
+    // Manually configure the host and protocol used for webhook config - this
+    // is the URL our Twilio number will hit in production
+    host:'rev-answering-machine.herokuapp.com',
+    protocol:'https'
+});
+
 // Handle incoming voice calls
 exports.voice = function(request, response) {
     var twiml = new twilio.TwimlResponse();

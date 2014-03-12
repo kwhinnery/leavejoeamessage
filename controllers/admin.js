@@ -24,8 +24,32 @@ exports.secure = function(request, response, next) {
 // Render admin home page
 exports.index = function(request, response) {
     response.render('admin', {
-        title: 'Leave Joe A Message',
+        title: 'Moderate Messages',
         staticfile: 'admin'
     });
+};
+
+// Get a list of messages
+exports.messages = function(request, response) {
+    // Get query params
+    var favorites = request.param('favorites') ? true : false,
+        unapproved = request.param('unapproved') ? true : false;
+
+    // Query for public accessible messages
+    Message.listMessages({ 
+        unapproved: unapproved, 
+        favorites: favorites 
+    }, function(err, models) {
+        if (err) {
+            response.send(500, err);
+        } else {
+            response.send(models);
+        }
+    });
+};
+
+// Update a given message
+exports.update = function(request, response) {
+
 };
 

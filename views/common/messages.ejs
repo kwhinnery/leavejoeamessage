@@ -1,0 +1,61 @@
+<div id="messages" ng-controller="app.controllers.MessageList">
+    <h2><span ng-show="admin">Moderate </span>Joe's Messages</h2>
+    <div id="filter">
+        <span class="unapproved active" 
+            ng-click="selectFilter('unapproved')"
+            ng-class="{ active: filter === 'unapproved' }"
+            ng-show="admin">Unapproved</span>
+        <span class="all" 
+            ng-click="selectFilter('recent')"
+            ng-class="{ active: filter === 'recent' }">Recent</span>
+        <span class="favorites" 
+            ng-click="selectFilter('favorites')"
+            ng-class="{ active: filter === 'favorites' }">Favorites</span>
+    </div>
+    <div id="messageList"
+        ng-show="!fetching"
+        ng-cloak>
+        
+        <!-- Each row has it's own instance of an Angular controller -->
+        <div class="row" 
+            ng-repeat="message in messages" 
+            ng-controller="app.controllers.Message">
+
+            <div class="content" ng-switch on="message.type">
+                <img ng-src="/img/{{message.type}}.png"/>
+                <p ng-switch-when="text">"{{message.textMessage}}"</p>
+                <p ng-switch-when="call">
+                    <span ng-click="toggle()">{{linkText}}</span> 
+                    | Message Length: 
+                    {{message.recordingDuration}} seconds
+                </p>
+            </div>
+            <div class="content" ng-show="admin">
+                <br/>
+                <p>
+                    Admin:
+                    <span ng-click="approve()">Approve</span> |
+                    <span ng-click="favorite()">Favorite</span> |
+                    <span ng-click="delete()">Delete</span>
+                </p>
+            </div>
+            <div class="meta">
+                <p>
+                    {{message.type === 'text' ? 'Text Message' : 'Voicemail'}}
+                    received {{message.date | fromNow}} from
+                    <span ng-if="message.fromCity">
+                        {{message.fromCity}}, {{message.fromState}}
+                    </span>
+                    <span ng-if="!message.fromCity">
+                        somewhere in Twins Territory
+                    </span>
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <div id="ajax" ng-show="fetching" ng-cloak>
+        <img src="/img/ajax.gif" alt="Loading..."/> 
+        Loading Messages, Hang Tight...
+    </div>
+</div>
