@@ -1,5 +1,5 @@
 <div id="messages" ng-controller="app.controllers.MessageList">
-    <h2><span ng-show="admin">Moderate </span>Joe's Messages</h2>
+    <h2><span ng-show="admin" ng-cloak>Moderate </span>Joe's Messages</h2>
     <div id="filter">
         <span class="unapproved active" 
             ng-click="selectFilter('unapproved')"
