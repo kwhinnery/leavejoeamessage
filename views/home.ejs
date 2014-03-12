@@ -1,0 +1,71 @@
+<!doctype html>
+<html ng-app="messageApp">
+<head>
+    <% include common/head %>
+</head>
+<body>
+    <div id="main">
+        <img class="portrait" src="/img/mauer_small.jpg" alt="Joe Mauer"/>
+        <h1>Call Or Text <span>(612) 351-6528</span> To Wish Joe Good Luck This Season!</h1>
+
+        <!-- Angular controller to drive display of the current message list -->
+        <div id="messages" ng-controller="app.controllers.MessageList" ng-cloak>
+            <h2>Joe's Messages</h2>
+            <div id="filter">
+                <span class="all active" 
+                    ng-click="selectFilter('recent')"
+                    ng-class="{ active: filter === 'recent' }">Recent</span>
+                <span class="favorites" 
+                    ng-click="selectFilter('favorites')"
+                    ng-class="{ active: filter === 'favorites' }">Favorites</span>
+            </div>
+            <div id="messageList"
+                ng-show="!fetching">
+                
+                <!-- Each row has it's own instance of an Angular controller -->
+                <div class="row" 
+                    ng-repeat="message in messages" 
+                    ng-controller="app.controllers.Message">
+
+                    <div class="content" ng-switch on="message.type">
+                        <img ng-src="/img/{{message.type}}.png"/>
+                        <p ng-switch-when="text">"{{message.textMessage}}"</p>
+                        <p ng-switch-when="call">
+                            <span ng-click="toggle()">{{linkText}}</span> 
+                            | Message Length: 
+                            {{message.recordingDuration}} seconds
+                        </p>
+                    </div>
+                    <div class="meta" on="message.type">
+                        <p>
+                            {{message.type === 'text' ? 'Text Message' : 'Voicemail'}}
+                            received {{message.date | fromNow}} from
+                            <span ng-if="message.fromCity">
+                                {{message.fromCity}}, {{message.fromState}}
+                            </span>
+                            <span ng-if="!message.fromCity">
+                                somewhere in Twins Territory
+                            </span>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+            <div id="ajax" ng-show="fetching" ng-cloak>
+                <img src="/img/ajax.gif" alt="Loading..."/> 
+                Loading Messages, Hang Tight...
+            </div>
+        </div>
+
+        <div id="acknowledgements">
+            <p>
+                Photos courtesy of <a href="http://commons.wikimedia.org/wiki/Main_Page" target="_blank">Wikimedia Commons</a>. Source code and contact information available on <a href="https://github.com/kwhinnery/leavejoeamessage">GitHub</a>.
+            </p>
+            <p>
+                <a id="poweredBy" href="http://www.twilio.com/" style="text: decoration: none; display: inline-block; width: 166px; height: 0; overflow: hidden; padding-top: 31px; background: url(http://www.twilio.com/packages/company/img/logos_icon_poweredbysmall.png) no-repeat;">powered by twilio™</a>
+            </p>
+        </div>
+    </div>
+    <% include common/scripts %>
+</body>
+</html>
