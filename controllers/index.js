@@ -14,7 +14,7 @@ module.exports = function(app) {
         validate: process.env.NODE_ENV === 'production',
 
         // Manually configure the host and protocol used for webhook config
-        host:'leavejoeamessage.herokuapp.com',
+        host:'rev-answering-machine.herokuapp.com',
         protocol:'https'
     });
 
