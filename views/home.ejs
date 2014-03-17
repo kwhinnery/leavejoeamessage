@@ -4,6 +4,14 @@
     <% include common/head %>
 </head>
 <body>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=744278165604195";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
     <div id="main">
         <img class="portrait" src="/img/mauer_small.jpg" alt="Joe Mauer"/>
         <h1>Call Or Text <span>(612) 255-4563</span> To Wish Joe Good Luck This Season!</h1>
@@ -18,6 +26,9 @@
             <p>
                 <a id="poweredBy" href="http://www.twilio.com/" style="text: decoration: none; display: inline-block; width: 166px; height: 0; overflow: hidden; padding-top: 31px; background: url(http://www.twilio.com/packages/company/img/logos_icon_poweredbysmall.png) no-repeat;">powered by twilio™</a>
             </p>
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://leavejoeamessage.com" data-text="Leave Joe Mauer a message wishing him good luck on the upcoming season!" data-via="kevinwhinnery" data-count="none">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+            <div class="fb-like" data-href="http://leavejoeamessage.com" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
         </div>
     </div>
     <% include common/scripts %>

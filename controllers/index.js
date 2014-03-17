@@ -32,5 +32,6 @@ module.exports = function(app) {
     // Create secured admin routes
     app.get('/admin', ensureHttps, auth, controllers.admin.index);
     app.get('/admin/messages', ensureHttps, auth, controllers.admin.messages);
-    app.post('/admin/message/:id', ensureHttps, auth, controllers.admin.update);
+    app.post('/admin/messages/:id', ensureHttps, auth, controllers.admin.update);
+    app.delete('/admin/messages/:id', ensureHttps, auth, controllers.admin.delete);
 };

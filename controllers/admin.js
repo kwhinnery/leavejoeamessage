@@ -50,6 +50,33 @@ exports.messages = function(request, response) {
 
 // Update a given message
 exports.update = function(request, response) {
+    console.log(request.param('props'));
+    // Args for find and update
+    var id = request.param('id'),
+        props = JSON.parse(request.param('props'));
 
+    // Update message based on input from client
+    Message.findByIdAndUpdate(id, props, function(err, doc) {
+        if (err) {
+            response.send(500, err);
+        } else {
+            response.send(doc);
+        }
+    });
+};
+
+// Delete a given message
+exports.delete = function(request, response) {
+    // Args for find and remove
+    var id = request.param('id');
+
+    // Update message based on input from client
+    Message.findByIdAndRemove(id, function(err, doc) {
+        if (err) {
+            response.send(500, err);
+        } else {
+            response.send(doc);
+        }
+    });
 };
 

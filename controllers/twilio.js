@@ -16,7 +16,7 @@ exports.webhook = twilio.webhook({
 exports.voice = function(request, response) {
     var twiml = new twilio.TwimlResponse();
 
-    twiml.say('Hey there, you\'ve reached Joe Mauer. I\'m getting ready for the season right now, but please leave a message after the beep.')
+    twiml.say('Hi there! Thanks for calling to wish Joe good luck this season. Please leave your message after the beep.')
         .record({
             maxLength:20,
             action:'/recording'

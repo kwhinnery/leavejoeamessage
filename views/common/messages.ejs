@@ -20,11 +20,13 @@
         <div class="row" 
             ng-repeat="message in messages" 
             ng-controller="app.controllers.Message">
-
+            
             <div class="content" ng-switch on="message.type">
                 <img ng-src="/img/{{message.type}}.png"/>
-                <p ng-switch-when="text">"{{message.textMessage}}"</p>
-                <p ng-switch-when="call">
+                <p ng-switch-when="text">
+                    "{{message.textMessage}}"
+                </p>
+                <p ng-switch-default>
                     <span ng-click="toggle()">{{linkText}}</span> 
                     | Message Length: 
                     {{message.recordingDuration}} seconds
@@ -35,8 +37,8 @@
                 <p>
                     Admin:
                     <span ng-click="approve()">Approve</span> |
-                    <span ng-click="favorite()">Favorite</span> |
-                    <span ng-click="delete()">Delete</span>
+                    <span ng-click="markFavorite()">Favorite</span> |
+                    <span ng-click="removeMessage()">Delete</span>
                 </p>
             </div>
             <div class="meta">
