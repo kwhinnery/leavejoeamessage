@@ -41,7 +41,7 @@ exports.recording = function(request, response) {
     // Save it to our MongoDB 
     msg.save(function(err, model) {
         var twiml = new twilio.TwimlResponse()
-            .say('Thanks for leaving Joe a message - your message will appear on the web site once we confirm it doesn\'t contain naughty language.  Goodbye!', {
+            .say('Thanks for leaving Joe a message - your message will appear on the web site once we confirm it is PG rated.  Goodbye!', {
                 voice:'alice'
             })
             .hangup();
@@ -64,7 +64,7 @@ exports.sms = function(request, response) {
     // Save it to our MongoDB
     msg.save(function(err, model) {
         var twiml = new twilio.TwimlResponse()
-            .message('Thanks for sending Joe a text!  Your message will appear on the web site once we confirm it doesn\'t contain naughty language :)');
+            .message('Thanks for sending Joe a text!  Your message will appear anonymously on leavejoeamessage.com once we confirm the contents are PG rated.');
         response.send(twiml);
     });
 };
