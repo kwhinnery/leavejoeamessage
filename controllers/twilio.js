@@ -18,7 +18,7 @@ exports.voice = function(request, response) {
 
     twiml.say('Hi there! Thanks for calling to wish Joe good luck this season. Please leave your message after the beep.')
         .record({
-            maxLength:20,
+            maxLength:60,
             action:'/recording'
         });
 
