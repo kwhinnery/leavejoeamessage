@@ -16,7 +16,7 @@ exports.webhook = twilio.webhook({
 exports.voice = function(request, response) {
     var twiml = new twilio.TwimlResponse();
 
-    twiml.say('Hi there! Thanks for calling to wish Joe good luck this season. Your message will show up on the web site once we confirm it doesn\'t contain naughty language. Please leave your message after the beep.')
+    twiml.say('Hi there! Thanks for calling to wish Joe good luck this season. Please leave your message after the beep.')
         .record({
             maxLength:20,
             action:'/recording'
@@ -41,7 +41,7 @@ exports.recording = function(request, response) {
     // Save it to our MongoDB 
     msg.save(function(err, model) {
         var twiml = new twilio.TwimlResponse()
-            .say('Thanks for leaving Joe a message - your message will appear on the web site once we confirm it doesn\'t contain naughty language ;)', {
+            .say('Thanks for leaving Joe a message - your message will appear on the web site once we confirm it doesn\'t contain naughty language.  Goodbye!', {
                 voice:'alice'
             })
             .hangup();
@@ -64,7 +64,7 @@ exports.sms = function(request, response) {
     // Save it to our MongoDB
     msg.save(function(err, model) {
         var twiml = new twilio.TwimlResponse()
-            .message('Thanks for sending Joe a message! It should appear on the web site soon.');
+            .message('Thanks for sending Joe a text!  Your message will appear on the web site once we confirm it doesn\'t contain naughty language :)');
         response.send(twiml);
     });
 };
