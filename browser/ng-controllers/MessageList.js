@@ -3,7 +3,7 @@ var MessageListController = function($scope, $http) {
     $scope.fetching = true;
     $scope.messages = [];
 
-    function fetchMessages() {
+    $scope.fetchMessages = function() {
         // Will flip on ajax spinner
         $scope.fetching = true;
 
@@ -31,16 +31,16 @@ var MessageListController = function($scope, $http) {
         }).finally(function() {
             $scope.fetching = false;
         });
-    }
+    };
 
     // Set the current filter and grab results
     $scope.selectFilter = function(filterValue) {
         $scope.filter = filterValue;
-        fetchMessages();
+        $scope.fetchMessages();
     };
 
     // Fetch the initial set of messages
-    fetchMessages();
+    $scope.fetchMessages();
 };
 
 // Make sure dependency injection doesn't break in minification

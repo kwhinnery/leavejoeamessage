@@ -38,21 +38,14 @@ var MessageController = function($scope, $http, $element) {
         };
     }
 
-    // Admin controls - requires HTTP basic auth
-    function remove() {
-        console.log($scope.messages);
-    }
-
+    // Admin functions require basic auth
     function update(properties) {
         var url = '/admin/messages/'+$scope.message._id;
 
         $http.post(url, {
             props: JSON.stringify(properties)
         }).success(function(data, status) {
-            console.log($scope.filter);
-            if ($scope.filter !== 'unapproved') {
-                remove();
-            }
+            $scope.fetchMessages();
         }).error(function(data, status) {
             alert('Error updating doc: '+data);
         });
@@ -78,7 +71,7 @@ var MessageController = function($scope, $http, $element) {
         var url = '/admin/messages/'+$scope.message._id;
 
         $http.delete(url).success(function(data, status) {
-            remove();
+            $scope.fetchMessages();
         }).error(function(data, status) {
             alert('Error deleting doc: '+data);
         });
