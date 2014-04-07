@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Leave Joe Mauer a message to wish him luck on his first year out from behind the dish.",
   "main": "app.js",
+  "repository": "https://github.com/kwhinnery/leavejoeamessage",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,11 +20,13 @@
     "twilio": "~1.6.0",
     "ejs": "~0.8.5",
     "express": "~3.4.8",
-    "gopher": "0.0.7",
     "mongoose": "~3.8.8",
     "node-buzz": "~1.1.0",
     "moment": "~2.5.1",
-    "angular": "~1.2.10"
+    "angular": "~1.2.10",
+    "less-middleware": "~0.2.1-beta",
+    "browserify": "~3.38.1",
+    "uglifyify": "~1.2.3"
   },
   "engines": {
     "node": "0.10.26"
